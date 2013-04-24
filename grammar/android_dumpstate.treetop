@@ -1,0 +1,45 @@
+grammar AndroidDumpState
+
+  rule document
+    (segment / empty_line)* {
+        def value
+          elements.map{ |e| e.value }
+        end
+        def each
+          elements.each {|e| yield e}
+        end
+     }
+  end
+
+  rule segment
+      header text {
+      def value
+          elements.map{|e| e.value}
+      end
+      }
+  end
+
+  rule header
+     "------" (!'------' .)* "------" {
+      def value
+        {:header => elements[1].text_value}
+      end
+     }
+  end
+
+  rule text
+    (!header .)* {
+      def value
+        {:text => text_value}
+      end
+    }
+  end
+
+  rule empty_line
+    [\n] {
+      def value
+        []
+      end
+    }
+  end
+end

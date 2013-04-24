@@ -1,0 +1,68 @@
+grammar Logcat
+
+   #space message)+ {
+
+
+  rule line
+    (datetime space tid space pid space type space message)+ {
+    }
+  end
+
+  rule datetime
+    number "-" number space number ":" number ":" number "." number {
+    }
+
+  end
+
+  rule tid
+    number {
+    }
+  end
+
+  rule pid
+    number {
+    }
+  end
+
+  rule type
+    ("I" / "D" / "W" / "E")+ {
+    }
+  end
+
+  rule message
+    (component detail) {
+    }
+  end
+
+  rule component
+    (!':' .)* ':' {
+    }
+
+  end
+
+  rule detail
+    (!datetime .)* {
+    }
+  end
+
+  rule space
+    ("\\\n" / [ \t] / [ \s])* {
+    }
+  end
+
+  rule white
+    [ \t\n\r\f]* {
+    }
+  end
+
+  rule word
+    [a-zA-Z_.,/0-9"'#@\-\*:~\+\!]+
+    {
+    }
+  end
+
+  rule number
+    [0-9]+ {
+    }
+  end
+end
