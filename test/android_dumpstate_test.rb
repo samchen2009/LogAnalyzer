@@ -2,7 +2,7 @@ require "treetop"
 require "polyglot"
 require "pp"
 require "debugger"
-require "./android_dumpstate.rb"
+require "./libs/android_dumpstate.rb"
 require "test/unit"
 
 class AndroidDumpStateTest < Test::Unit::TestCase

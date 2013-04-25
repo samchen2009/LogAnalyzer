@@ -1,0 +1,40 @@
+grammar Dmesg
+
+  rule line
+    (timestamp space message)*
+  end
+
+  rule timestamp
+    (!"[" .)* '[' space time ']'
+  end
+
+  rule time
+    second:number "." usecond:number
+  end
+
+  rule message
+    (!"\n" .)*
+  end
+
+  rule space
+    ("\\\n" / [ \t] / [ \s])* {
+    }
+  end
+
+  rule white
+    [ \t\n\r\f]* {
+    }
+  end
+
+  rule word
+    [a-zA-Z_.,/0-9"'#@\-\*:~\+\!]+
+    {
+    }
+  end
+
+  rule number
+    [0-9]+ {
+    }
+  end
+
+end
