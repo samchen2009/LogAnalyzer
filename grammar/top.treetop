@@ -1,0 +1,40 @@
+grammar Top
+
+  rule line
+    (
+       pid:number space 
+       tid:number space
+       pr:number  space
+       cpu:(number "%") space
+       s:("R" / "D" / "S") space
+       vss:(number "K") space 
+       rss:(number "K") space
+       pcy:("fg" / "bg") space
+       uid:word space
+       thread:word space
+       proc:(!"\n" .)*
+    )*
+  end
+
+  rule space
+    ("\\\n" / [ \t] / [ \s])* {
+    }
+  end
+
+  rule white
+    [ \t\n\r\f]* {
+    }
+  end
+
+  rule word
+    [a-zA-Z_.,/0-9"'#@\-\*:~\+\!]+
+    {
+    }
+  end
+
+  rule number
+    [0-9]+ {
+    }
+  end
+
+end
