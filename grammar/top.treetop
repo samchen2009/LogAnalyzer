@@ -2,6 +2,7 @@ grammar Top
 
   rule line
     (
+       (!number .)* 
        pid:number space 
        tid:number space
        pr:number  space

@@ -37,15 +37,15 @@ END
 
   def test_parse
     assert @@syntaxNode
-    assert (@@lines.size == 20), "the lines parsed is not 20"
+    assert (@@lines.size == 19), "the lines parsed is not 20"
   end
 
   def test_parse_lines
-    assert @@lines[0].pid.text_value = "1602"
-    assert @@lines[19].pid.text_value = "717"
-    assert @@lines[19].tid.text_value = "872"
-    assert @@lines[0].cpu = "30%"
-    assert @@lines[19].proc="/system/bin/berlin_avservice"
+    assert @@lines[0].pid.text_value == "1602"
+    assert @@lines[18].pid.text_value == "717"
+    assert @@lines[18].tid.text_value == "872"
+    assert @@lines[0].cpu.text_value == "30%"
+    assert @@lines[18].proc.text_value =="/system/bin/berlin_avservice"
   end
 
 end
